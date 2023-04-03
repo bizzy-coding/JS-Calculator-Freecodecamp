@@ -3,20 +3,21 @@ const keys = document.querySelector(".calculator__keys");
 const display = document.querySelector(".calculator__display")
 
 keys.addEventListener("click", (e) => {
-//   if (e.target.matches("button")) {
-//     console.log("itsa button");
-//   }
+  if (e.target.matches("button")) {
+
 
   const key = e.target;
   const action = key.dataset.action;
+  const keyContent = key.textContent;
+  const displayedNum = display.textContent;
 
   if (!action) {
     console.log("number key!");
-    if(display.innerText == 0 ) {
-        display.innerText = key.innerText;
-    } else if (display.innerText >= 1 ) {
+    if(displayedNum === '0' ) {
+        display.textContent = keyContent
+    } else {
         console.log('bigger than 1')
-        display.innerText = display.innerText + key.innerText;
+        display.textContent = displayedNum + keyContent;
     }
     
   }
@@ -41,4 +42,7 @@ keys.addEventListener("click", (e) => {
   if (action === 'calculate') {
     console.log('equal key!')
   }
+
+  }
+
 });
