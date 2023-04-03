@@ -30,12 +30,10 @@ keys.addEventListener("click", (e) => {
 
     if (action === "decimal") {
       console.log("decimal key!");
-      if (displayedNum === "0") {
-        console.log(displayedNum.textContent);
-        displayedNum.textContent = displayedNum + "."; 
+      display.textContent = displayedNum + "."; 
 
       }
-    }
+      
 
     if (action === "clear") {
       console.log("clear key!");
