@@ -8,15 +8,14 @@ keys.addEventListener("click", (e) => {
     const action = key.dataset.action;
     const keyContent = key.textContent;
     const displayedNum = display.textContent;
+    const previousKeyType = calculator.dataset.previousKeyType;
 
     if (!action) {
-      console.log("number key!");
-      if (displayedNum === "0") {
-        display.textContent = keyContent;
-      } else {
-        //console.log("bigger than 1");
-        display.textContent = displayedNum + keyContent;
-      }
+        if (displayedNum === '0' || previousKeyType === 'operator') {
+          display.textContent = keyContent
+        } else {
+          display.textContent = displayedNum + keyContent
+        }
 
       Array.from(key.parentNode.children)
       .forEach(k => k.classList.remove('is-depressed'))
@@ -29,7 +28,10 @@ keys.addEventListener("click", (e) => {
       action === "divide"
     ) {
       console.log("operator key!");
-      key.classList.add('is-depressed');
+      
+      key.classList.add('is-depressed')
+      // Add custom attribute
+      calculator.dataset.previousKeyType = 'operator'
     }
 
   
