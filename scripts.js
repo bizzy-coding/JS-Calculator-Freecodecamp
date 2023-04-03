@@ -17,6 +17,9 @@ keys.addEventListener("click", (e) => {
         //console.log("bigger than 1");
         display.textContent = displayedNum + keyContent;
       }
+
+      Array.from(key.parentNode.children)
+      .forEach(k => k.classList.remove('is-depressed'))
     }
 
     if (
@@ -26,7 +29,10 @@ keys.addEventListener("click", (e) => {
       action === "divide"
     ) {
       console.log("operator key!");
+      key.classList.add('is-depressed');
     }
+
+  
 
     if (action === "decimal") {
       console.log("decimal key!");
