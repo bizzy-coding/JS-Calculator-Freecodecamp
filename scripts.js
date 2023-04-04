@@ -18,10 +18,11 @@ keys.addEventListener("click", (e) => {
       if (displayedNum === '0' || previousKeyType === 'operator') {
         display.textContent = keyContent;
       } else {
-        //console.log("bigger than 1");
+        console.log("bigger than 1");
         display.textContent = displayedNum + keyContent;
       }
     }
+
 
     if (
       action === "add" ||
@@ -33,29 +34,29 @@ keys.addEventListener("click", (e) => {
       key.classList.add('is-depressed');
       calculator.dataset.previousKeyType = 'operator';
       calculator.dataset.firstValue = displayedNum
-  calculator.dataset.operator = action
+      calculator.dataset.operator = action
     }
 
-  
-
-    if (action === "decimal") {
-      console.log("decimal key!");
-      display.textContent = displayedNum + "."; 
-
+    if (action === 'decimal') {
+        if (!displayedNum.includes('.')) {
+          display.textContent = displayedNum + '.'
+          //for decimal point - no duplication
+        } else if (previousKeyType === 'operator') {
+          display.textContent = '0.'
+        }
+        calculator.dataset.previousKeyType = 'decimal'
       }
-      
 
     if (action === "clear") {
       console.log("clear key!");
     }
 
     if (action === "calculate") {
-        const firstValue = calculator.dataset.firstValue
-  const operator = calculator.dataset.operator
-  const secondValue = displayedNum
-
-  display.textContent = calculate(firstValue, operator, secondValue)
-      console.log("equal key!");
+        const firstValue = calculator.dataset.firstValue;
+        const operator = calculator.dataset.operator;
+        const secondValue = displayedNum;
+        display.textContent = calculate(firstValue, operator, secondValue)
+        console.log("equal key!");
     }
   }
 });
